@@ -1,23 +1,20 @@
 spring:
   application:
-    name: gateway-service
+    name: gateway
+  profiles:
+    active: dev
   cloud:
-    gateway:
+    config:
+      profile: dev
+      name: gateway
+      label: master
       discovery:
-        locator:
-          # 启用基于服务发现的路由
-          enabled: true
-          # 使用小写的服务ID
-          lower-case-service-id: true
-    loadbalancer:
-      retry:
-        # 启用重试功能
         enabled: true
+        serviceId: config
+
 eureka:
   client:
     service-url:
       defaultZone: http://8.152.6.148:8761/eureka
   instance:
     prefer-ip-address: true
-server:
-  port: 8000
