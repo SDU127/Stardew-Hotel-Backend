@@ -5,26 +5,12 @@ spring:
   application:
     name: config
   cloud:
-    inetutils:
-      ignoredInterfaces:
-        - VMware.*
-      use-only-site-local-interfaces: true
-      preferred-networks: 8.152.6.*
     config:
-      uri: http://8.152.6.148:8888
       server:
         git:
-          uri: https://gitee.com/buxuan_1601/stardew-hotel-config.git
           default-label: master
           search-paths: backend
-          username: buxuan_1601@163.com
-          password: Buxuan20040401
           force-pull: true
-  rabbitmq:
-    host: 8.152.6.148
-    port: 5672
-    username: default
-    password: 0nlinMQ
 
 management:
   endpoints:
@@ -37,8 +23,6 @@ eureka:
     service-url:
       defaultZone: http://8.152.6.148:8761/eureka
   instance:
-    leaseRenewalIntervalInSeconds: 1
-    leaseExpirationDurationInSeconds: 2
     prefer-ip-address: true
     ip-address: 8.152.6.148
     instance-id: 8.152.6.148:8888
