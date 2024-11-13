@@ -20,6 +20,8 @@
         <module>test-service</module>
         <module>gateway</module>
         <module>config</module>
+        <module>auth-service</module>
+        <module>user-service</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -36,6 +38,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
