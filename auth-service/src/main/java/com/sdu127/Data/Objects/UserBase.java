@@ -1,7 +1,5 @@
 package com.sdu127.Data.Objects;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,6 @@ public class UserBase {
     /**
      * 主键id
      */
-    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
