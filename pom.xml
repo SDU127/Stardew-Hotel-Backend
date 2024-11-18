@@ -22,6 +22,7 @@
         <module>config</module>
         <module>auth-service</module>
         <module>user-service</module>
+        <module>pic-service</module>
     </modules>
 
     <packaging>pom</packaging>
