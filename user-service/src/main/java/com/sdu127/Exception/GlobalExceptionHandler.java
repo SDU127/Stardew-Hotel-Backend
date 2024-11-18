@@ -2,6 +2,7 @@ package com.sdu127.Exception;
 
 import com.sdu127.Data.VO.Result;
 import com.sdu127.Exception.Exceptions.InfoMessage;
+import com.sdu127.Exception.Exceptions.PathPermissionException;
 import jakarta.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InfoMessage.class)
     private ResponseEntity<Result> handleInfoMessage(InfoMessage e) {
         return e.returnMessage();
+    }
+
+    /**
+     * 路径权限异常
+     */
+    @ExceptionHandler(PathPermissionException.class)
+    private ResponseEntity<Result> handlePathPermissionException(PathPermissionException e) {
+        logger.warn(e.log());
+        return response(4030, "无权限");
     }
 
     /**
