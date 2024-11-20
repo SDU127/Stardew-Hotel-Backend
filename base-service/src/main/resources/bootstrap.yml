@@ -1,12 +1,12 @@
 spring:
   application:
-    name: pic-service
+    name: base-service
   profiles:
     active: dev
   cloud:
     config:
       profile: dev
-      name: pic-service
+      name: base-service
       label: master
       discovery:
         enabled: true
