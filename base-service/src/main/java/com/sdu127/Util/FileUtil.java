@@ -1,6 +1,6 @@
 package com.sdu127.Util;
 
-import com.sdu127.exception.FileUploadException;
+import com.sdu127.exception.Exceptions.FileUploadException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

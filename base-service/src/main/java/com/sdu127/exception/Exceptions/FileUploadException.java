@@ -1,4 +1,4 @@
-package com.sdu127.exception;
+package com.sdu127.exception.Exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

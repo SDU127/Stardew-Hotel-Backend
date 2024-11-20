@@ -2,7 +2,7 @@ package com.sdu127.Service;
 
 import com.sdu127.Data.VO.Result;
 import com.sdu127.Util.FileUtil;
-import com.sdu127.exception.FileUploadException;
+import com.sdu127.exception.Exceptions.FileUploadException;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +19,7 @@ public class FileService {
         try {
             UUID uuid = UUID.randomUUID();
             String imagePath = fileUtil.uploadImage(image, "image", uuid.toString());
-            return Result.success("图片上传成功", imagePath);
+            return Result.success(imagePath);
         } catch (IOException e) {
             throw new FileUploadException(e.getMessage());
         }
