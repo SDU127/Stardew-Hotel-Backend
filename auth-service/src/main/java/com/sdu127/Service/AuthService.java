@@ -43,6 +43,10 @@ public class AuthService {
         // 查询用户是否存在
         User user = userServiceIns.getUserByNameOrMail(nameOrMail);
 
+        System.out.println(user);
+
+        if (user == null) throw new InfoMessage(ResponseData.USER_OR_MAIL_NOT_FOUND);
+
         // 判断密码是否正确
         if (!BCrypt.checkpw(password, user.getPassword())) throw new InfoMessage(ResponseData.PASSWORD_WRONG);
         return doLogin(user);

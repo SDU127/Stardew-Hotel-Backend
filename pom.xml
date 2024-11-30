@@ -22,6 +22,7 @@
         <module>auth-service</module>
         <module>user-service</module>
         <module>base-service</module>
+        <module>business-service</module>
     </modules>
 
     <packaging>pom</packaging>

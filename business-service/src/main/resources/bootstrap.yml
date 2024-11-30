@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: business-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      profile: dev
+      name: business-service
+      label: master
+      discovery:
+        enabled: true
+        serviceId: config
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://8.152.6.148:8761/eureka
+  instance:
+    prefer-ip-address: true

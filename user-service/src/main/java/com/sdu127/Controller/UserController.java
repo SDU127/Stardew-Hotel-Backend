@@ -1,10 +1,12 @@
 package com.sdu127.Controller;
 
+import com.sdu127.Data.Constant.Role;
 import com.sdu127.Data.Objects.UserBase;
 import com.sdu127.Data.PO.User;
 import com.sdu127.Data.VO.Result;
 import com.sdu127.Mapper.UserMapper;
 import com.sdu127.Service.UserService;
+import com.sdu127.Annotation.RequiredLogin;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,7 @@ public class UserController {
      * @param userMail 新邮箱
      * @param mailVerificationCode 验证码
      */
+    @RequiredLogin(roles = {Role.SERVER, Role.CLIENT})
     @PostMapping("/bindMail")
     public Result bindMail(@RequestParam String userMail, @RequestParam String mailVerificationCode) {
         return userService.bindMail(userMail, mailVerificationCode);
@@ -34,6 +37,7 @@ public class UserController {
      * @param oldPassword 旧密码
      * @param newPassword 新密码
      */
+    @RequiredLogin(roles = {Role.SERVER, Role.CLIENT})
     @PatchMapping("/modifyPassword")
     public Result modifyPassword(@RequestParam String oldPassword, @RequestParam String newPassword) {
         return userService.modifyPassword(oldPassword, newPassword);
@@ -44,6 +48,7 @@ public class UserController {
      *
      * @param userBase 用户信息
      */
+    @RequiredLogin(roles = {Role.SERVER, Role.CLIENT})
     @PatchMapping("/updateUser")
     public Result updateUser(@RequestBody UserBase userBase) {
         return userService.updateUser(userBase);
@@ -52,12 +57,74 @@ public class UserController {
     /**
      * 获取个人信息
      */
+    @RequiredLogin(roles = {Role.SERVER, Role.CLIENT})
     @GetMapping("/getUserInfo")
     public Result getUserInfo() {
         return userService.getUserInfo();
     }
 
 
+
+
+    /**
+     * 创建用户
+     *
+     * @param name 用户名
+     * @param lastName 姓
+     * @param firstName 名
+     * @param role 身份
+     * @param idNumber 身份证号码
+     */
+    @RequiredLogin
+    @PostMapping("/addUser")
+    public Result addUser(@RequestParam String name,
+                          @RequestParam String lastName,
+                          @RequestParam String firstName,
+                          @RequestParam Boolean gender,
+                          @RequestParam String role,
+                          @RequestParam String idNumber,
+                          @RequestParam(required = false, defaultValue = "") String phone,
+                          @RequestParam(required = false, defaultValue = "") String mail) {
+        return userService.addUser(name, lastName, firstName, gender, role, idNumber, phone, mail);
+    }
+
+//    /**
+//     * 批量删除用户
+//     *
+//     * @param userIds 用户集合
+//     */
+//    @DeleteMapping("/deleteUser")
+//    public Result deleteUser(@RequestBody List<Integer> userIds) {
+//        return userService.deleteUser(userIds);
+//    }
+
+    /**
+     * 修改是否需要校验身份证号码
+     *
+     * @param isNeedCheck 是否需要校验
+     */
+    @RequiredLogin
+    @PatchMapping("/modifyIDNeedCheck")
+    public Result modifyIDNeedCheck(@RequestParam Boolean isNeedCheck) {
+        return userService.modifyIDNeedCheck(isNeedCheck);
+    }
+
+    /**
+     * 获取所有用户信息
+     */
+    @RequiredLogin
+    @GetMapping("/searchUser")
+    public Result searchUser(@RequestParam(required = false, defaultValue = "") String name,
+                             @RequestParam(required = false, defaultValue = "") Boolean gender,
+                             @RequestParam(required = false, defaultValue = "") String lastName,
+                             @RequestParam(required = false, defaultValue = "") String phone,
+                             @RequestParam(required = false, defaultValue = "") String mail,
+                             @RequestParam(required = false, defaultValue = "") String role,
+                             @RequestParam(required = false, defaultValue = "") String idNumber,
+                             @RequestParam Integer current,
+                             @RequestParam Integer size) {
+        return userService.searchUser(name, gender, lastName, phone, mail, role, idNumber, current, size);
+    }
 
 
 

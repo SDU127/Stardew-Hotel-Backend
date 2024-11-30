@@ -19,7 +19,7 @@ public class AuthController {
 
     @GetMapping("/test/{id}")
     public Result test(@PathVariable("id") Integer id) {
-        return Result.success(userServiceIns.getUserById(id));
+        return Result.success(userServiceIns.getUser(id));
     }
 
     /**

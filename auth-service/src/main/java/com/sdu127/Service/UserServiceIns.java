@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "user-service", path = "/user")
 public interface UserServiceIns {
-    // 测试用
-    @GetMapping("/{id}")
-    User getUserById(@PathVariable("id") Integer id);
-
     // 通过用户id获取用户
     @PostMapping("/get-user/{userId}")
     User getUser(@PathVariable Integer userId);
