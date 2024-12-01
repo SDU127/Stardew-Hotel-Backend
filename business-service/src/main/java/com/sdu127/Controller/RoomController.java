@@ -20,24 +20,23 @@ public class RoomController {
      * 获取我的房屋信息
      */
     @RequiredLogin(roles = {Role.CLIENT})
-    @GetMapping("/getMyHouse")
-    public Result getMyHouse(@RequestParam Integer current, @RequestParam Integer size) {
-        return roomService.getMyHouse(current, size);
+    @GetMapping("/getMyRoom")
+    public Result getMyRoom(@RequestParam Integer current, @RequestParam Integer size) {
+        return roomService.getMyRoom(current, size);
     }
 
     /**
      * 显示房屋信息
      */
     @RequiredLogin(roles = {Role.CLIENT})
-    @GetMapping("/showHouses")
-    public Result showHouses(@RequestParam(required = false, defaultValue = "-1") Integer building,
-                             @RequestParam(required = false, defaultValue = "-1") Integer floor,
+    @GetMapping("/showRooms")
+    public Result showRooms(@RequestParam(required = false, defaultValue = "-1") Integer floor,
                              @RequestParam(required = false, defaultValue = "-1") Integer room,
                              @RequestParam(required = false, defaultValue = "") String type,
                              @RequestParam(required = false, defaultValue = "-1") Integer isUsed,
                              @RequestParam Integer current,
                              @RequestParam Integer size) {
-        return roomService.showHouses(building, floor, room, type, isUsed, current, size);
+        return roomService.showRooms(floor, room, type, isUsed, current, size);
     }
 
 
@@ -47,28 +46,23 @@ public class RoomController {
     /**
      * 添加新房屋
      *
-     * @param building 栋
-     * @param floor 楼层
-     * @param room 房间号
-     * @param area 面积
-     * @param type 类型
-     * @param fee 物业费
+     * @param room 房间信息
      */
     @RequiredLogin
-    @PostMapping("/addHouse")
-    public Result addHouse(@RequestParam Integer building, @RequestParam Integer floor, @RequestParam Integer room, @RequestParam Double area, @RequestParam String type, @RequestParam Double fee) {
-        return roomService.addHouse(building, floor, room, area, type, fee);
+    @PostMapping("/addRoom")
+    public Result addRoom(@RequestBody Room room) {
+        return roomService.addRoom(room);
     }
 
     /**
      * 删除房屋
      *
-     * @param houseIds 房屋id
+     * @param roomIds 房屋id
      */
     @RequiredLogin
-    @DeleteMapping("/deleteHouse")
-    public Result deleteHouse(@RequestParam List<Integer> houseIds) {
-        return roomService.deleteHouse(houseIds);
+    @DeleteMapping("/deleteRoom")
+    public Result deleteRoom(@RequestParam List<Integer> roomIds) {
+        return roomService.deleteRoom(roomIds);
     }
 
     /**
@@ -76,9 +70,9 @@ public class RoomController {
      *
      */
     @RequiredLogin
-    @PatchMapping("/modifyHouse")
-    public Result modifyHouse(@RequestBody Room room) {
-        return roomService.modifyHouse(room);
+    @PatchMapping("/modifyRoom")
+    public Result modifyRoom(@RequestBody Room room) {
+        return roomService.modifyRoom(room);
     }
 
 

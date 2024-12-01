@@ -13,6 +13,13 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class RoomDTO extends Room {
     /**
+     * 是否正在被使用
+     */
+    private Integer isUsed;
+
+    private Integer userId;
+
+    /**
      * 姓名
      */
     @TableField(exist = false)
@@ -23,4 +30,9 @@ public class RoomDTO extends Room {
      */
     @TableField(exist = false)
     private String phone;
+
+    /**
+     * 身份证号
+     */
+    private String idNumber;
 }

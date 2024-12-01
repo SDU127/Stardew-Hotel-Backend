@@ -12,18 +12,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("house")
+@TableName("room")
 public class Room {
     /**
      * 主键id
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
-
-    /**
-     * 几号楼
-     */
-    private Integer building;
 
     /**
      * 几楼
@@ -33,7 +28,7 @@ public class Room {
     /**
      * 几室
      */
-    private Integer room;
+    private Integer number;
 
     /**
      * 面积
@@ -46,17 +41,26 @@ public class Room {
     private String type;
 
     /**
-     * 物业费
+     * 费用
      */
     private Double fee;
 
     /**
-     * 是否有人居住
+     * 折扣
      */
-    private Integer isUsed;
+    private double discount;
 
     /**
-     * 居住者
+     * VIP折扣
      */
-    private Integer userId;
+    private double vipDiscount;
+
+    public boolean checkNull() {
+        return floor == null || number == null || area == null || type == null || fee == null;
+    }
+    
+    public void modifyDiscount() {
+        if (discount <= 0 || discount > 1) discount = 1;
+        if (vipDiscount <= 0 || vipDiscount > 1) vipDiscount = 1;
+    }
 }

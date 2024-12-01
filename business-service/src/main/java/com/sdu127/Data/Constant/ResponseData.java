@@ -14,7 +14,7 @@ public enum ResponseData {
     MAIL_USED(4004, "邮箱已被注册"),
     ROLE_ERROR(4005, "身份不存在"),
     NAME_ERROR(4006, "名字错误"),
-    HOUSE_EXISTS(4007, "房屋已存在"),
+    ROOM_EXISTS(4007, "房间已存在"),
     PARKING_SPOT_EXISTS(4008, "车位已存在"),
     URL_WRONG(4009, "URL格式错误"),
 
@@ -32,7 +32,7 @@ public enum ResponseData {
     USER_OR_MAIL_NOT_FOUND(4043, "用户/邮箱不存在"),
     PAYMENT_NOT_FOUND(4044, "缴费不存在"),
     PARKING_SPOT_NOT_AVAILABLE(4045, "停车位不可用"),
-    HOUSE_NOT_AVAILABLE(4046, "房屋不可用"),
+    ROOM_NOT_AVAILABLE(4046, "房间不可用"),
     REPORT_NOT_AVAILABLE(4047, "该投诉不可用"),
     NOTICE_NOT_AVAILABLE(4048, "通知不可用");
 
