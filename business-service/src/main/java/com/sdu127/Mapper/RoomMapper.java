@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sdu127.Data.DTO.RoomDTO;
+import com.sdu127.Data.Objects.TimeBlock;
 import com.sdu127.Data.PO.Room;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * 房屋Mapper
@@ -51,6 +54,13 @@ public interface RoomMapper extends BaseMapper<Room> {
             "LEFT JOIN room_rent ON room.id = room_rent.room_id AND NOW() BETWEEN start_time AND end_time " +
             "LEFT JOIN user ON room_rent.user_id = user.id " +
             "WHERE deleted = 0 AND ${ew.sqlSegment}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "usedTime", column = "id", many = @Many(select = "getUsedTime"))
+    })
     IPage<RoomDTO> searchRooms(Page<RoomDTO> page, @Param("ew") Wrapper<RoomDTO> queryWrapper);
+
+    @Select("SELECT start_time, end_time FROM room_rent WHERE room_id = #{roomId} AND NOW() < end_time")
+    List<TimeBlock> getUsedTime(Integer roomId);
 
 }

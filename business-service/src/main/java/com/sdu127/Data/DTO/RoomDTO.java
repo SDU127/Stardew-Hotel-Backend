@@ -1,11 +1,14 @@
 package com.sdu127.Data.DTO;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.sdu127.Data.Objects.TimeBlock;
 import com.sdu127.Data.PO.Room;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +38,6 @@ public class RoomDTO extends Room {
      * 身份证号
      */
     private String idNumber;
+
+    private List<TimeBlock> usedTime;
 }
