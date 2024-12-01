@@ -71,9 +71,10 @@ public class NoticeService {
         )
             throw new InfoMessage(ResponseData.NOTICE_NOT_AVAILABLE);
 
-        if (notice.getIsRead() == 1) throw new InfoMessage(ResponseData.ALREADY_READ);
+        if (notice.getIsRead() != 1) {
+            noticeMapper.addRead(noticeId, CurrentUser.getId());
+        }
 
-        noticeMapper.addRead(noticeId, CurrentUser.getId());
         return Result.ok();
     }
 
